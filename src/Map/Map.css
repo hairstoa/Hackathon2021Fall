@@ -1,0 +1,12 @@
+.map-container {
+    height: 80vh;
+    width: 80vw;
+    position: relative;
+}
+
+#coords {
+    position: absolute;
+    z-index: 1;
+    background: gray;
+    margin-left: 25%;
+}
