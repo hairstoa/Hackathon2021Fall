@@ -36,3 +36,16 @@
     transform: rotate(360deg);
   }
 }
+
+button {
+  border: solid black;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+button:hover {
+  cursor: pointer;
+}
+button:active {
+  color: blue;
+}
