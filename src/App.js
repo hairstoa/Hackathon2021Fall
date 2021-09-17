@@ -1,6 +1,7 @@
 import './App.css';
 import Map from './Map/Map.js';
 import Alert from './Alert/Alert.js';
+import Legend from './Legend/Legend';
 
 function App() {
   const locationState = "GA";
@@ -8,6 +9,7 @@ function App() {
     <div className="App">
       <Alert userState = {locationState} />
       <Map /> 
+      <Legend />
     </div>
   );
 }
