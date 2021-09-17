@@ -1,26 +1,13 @@
 .map-container {
-    height: 80vh;
-    width: 80vw;
-    position: relative;
+  height: 70vh;
+  width: 70vw;
+  position: relative;
+  margin-bottom: 10px;
 }
 
 #coords {
-    position: absolute;
-    z-index: 1;
-    background: gray;
-    margin-left: 25%;
-}
-
-button {
-    border: solid black;
-    border-radius: 5px;
-    padding: 10px;
-  }
-  
-button:hover {
-cursor: pointer;
-}
-
-button:active {
-color: blue;
+  position: absolute;
+  z-index: 1;
+  background: gray;
+  margin-left: 25%;
 }
