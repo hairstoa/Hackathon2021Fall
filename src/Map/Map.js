@@ -9,22 +9,35 @@ function Map() {
 
     const mapContainer = useRef(null);
     const map = useRef(null);
-    const [lng, setLng] = useState(-70.9);
-    const [lat, setLat] = useState(42.35);
-    const [zoom, setZoom] = useState(9);
-    
+    const [lng, setLng] = useState(-97.6064);
+    const [lat, setLat] = useState(38.6427);
+    const [zoom, setZoom] = useState(4);
+
     useEffect(() => {
+        // map already displayed
         if (map.current) return;
+        
+        // map boundaries
+        const bounds = [
+            [-195.3481, 18.5117],       // Southwest coords
+            [-65.0877, 73.1958]         // Northeast coords
+        ];
+    
+        // render the map
         map.current = new mapboxgl.Map({
             container: mapContainer.current,
             style: 'mapbox://styles/mapbox/streets-v11',
             center: [lng, lat],
-            zoom: zoom
+            zoom: zoom,
+            maxBounds: bounds
         });
     });
 
     useEffect(() => {
-        if (!map.current) return;
+        // no map displayed
+        if (!map.current) return;   
+
+        // update current coords when user moves map
         map.current.on("move", () => {
             setLng(map.current.getCenter().lng.toFixed(4));
             setLat(map.current.getCenter().lat.toFixed(4));
@@ -34,7 +47,7 @@ function Map() {
 
     return(
         <div ref={mapContainer} className="map-container">
-            <div id="coords">Latitude: {lat} | Longitude: {lng}</div>
+            <div id="coords">Latitude: {lat} | Longitude: {lng} | Zoom: {zoom}</div>
         </div>
     )
 }
