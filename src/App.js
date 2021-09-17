@@ -1,15 +1,19 @@
 import './App.css';
-import Map from './Map/Map.js';
-import Alert from './Alert/Alert.js';
+import Map from './Map/Map';
+import Alert from './Alert/Alert';
 import Legend from './Legend/Legend';
+import Feed from './Feed/Feed';
 
 function App() {
-  const locationState = "GA";
+  const locationFIP = "41035";
+  const locationState = "OR";
+  let d = 1;
   return (
     <div className="App">
-      <Alert userState = {locationState} />
+      <Alert userState = { locationState } userFIP = { locationFIP } />
       <Map /> 
       <Legend />
+      <Feed dn = { d } />
     </div>
   );
 }
