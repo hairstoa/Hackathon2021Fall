@@ -36,3 +36,38 @@
     transform: rotate(360deg);
   }
 }
+
+
+/* Legends CSS*/
+
+.table {
+  border-style: solid;
+  border: 2px solid rgb(116, 108, 108);
+  width: 800px;
+}
+
+/*.th-element {
+  border-style: solid;
+  border: 2px solid rgb(116, 108, 108);
+  width: 100px;
+}
+*/
+/*.top-row {
+  border-style: solid;
+  border: 2px solid rgb(116, 108, 108);
+  width: 600px;
+}
+*/
+
+/*.table-row {
+  border-style: solid;
+  border: 2px solid rgb(116, 108, 108);
+  width: 600px;
+}*/
+
+/*.table-data {
+  border-style: solid;
+  border: 2px solid rgb(116, 108, 108);
+  width: 200px;
+
+}*/
