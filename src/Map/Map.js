@@ -56,23 +56,8 @@ function Map() {
     });
   });
 
-  //   const setUserLocation = () => {
-  //     // button works
-  //     // TODO: update the map's lat and lon
-  //     navigator.geolocation.getCurrentPosition((position) => {
-  //       setLng(position.coords.longitude);
-  //       setLat(position.coords.latitude);
-  //       setZoom(10);
-  //       console.log(`button lat: ${position.coords.latitude}`);
-  //       console.log(`button lon: ${position.coords.longitude}`);
-  //       console.log(`current lon: ${lng}`);
-  //       console.log(`current lat: ${lat}`);
-  //     });
-  //   };
-
   return (
     <>
-      {/* <button onClick={() => setUserLocation()}>My Location</button> */}
       <div ref={mapContainer} className="map-container">
         <div id="coords">
           Latitude: {lat} | Longitude: {lng} | Zoom: {zoom}

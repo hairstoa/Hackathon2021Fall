@@ -37,7 +37,6 @@
   }
 }
 
-
 /* Legends CSS*/
 
 .table {
@@ -71,3 +70,17 @@
   width: 200px;
 
 }*/
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.left-side {
+  flex: 1;
+}
+
+.right-side {
+  flex: 1;
+}
