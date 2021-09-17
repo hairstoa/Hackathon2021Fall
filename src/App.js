@@ -3,10 +3,11 @@ import Map from './Map/Map.js';
 import Alert from './Alert/Alert.js';
 
 function App() {
-  const locationState = "GA";
+  const locationFIP = "41035";
+  const locationState = "OR";
   return (
     <div className="App">
-      <Alert userState = {locationState} />
+      <Alert userState = { locationState } userFIP = { locationFIP } />
       <Map /> 
     </div>
   );
