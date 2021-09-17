@@ -1,23 +1,20 @@
 import React, {useState} from "react";
 import "./Alert.css";
 
-function Alert() {
+function Alert(props) {
 
     const [alertStatus, setAlertStatus] = useState("No alerts.");
 
-    const alertHandler = (userState) => {
+    async function alertHandler(userState) {
         let uri = "https://api.weather.gov/alerts/active?area=" + userState;
-        fetch(uri).then(response => {
-            return response.json()
-        }).then(weatherData => {
-            setAlertStatus(weatherData.title);
-        });
+        const response = await fetch(uri);
+        const weatherData = await response.json();
+        setAlertStatus(weatherData.title);
     }
    
-    
     return(
         <div className="alert-box">
-            <div onLoad={alertHandler}> { alertStatus }</div>
+            <div onLoad={alertHandler(props.userState)}> { alertStatus }</div>
         </div>
     )
 }

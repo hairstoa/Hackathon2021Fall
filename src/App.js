@@ -3,9 +3,10 @@ import Map from './Map/Map.js';
 import Alert from './Alert/Alert.js';
 
 function App() {
+  const locationState = "GA";
   return (
     <div className="App">
-      <Alert />
+      <Alert userState = {locationState} />
       <Map /> 
     </div>
   );
