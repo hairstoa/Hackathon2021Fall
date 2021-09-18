@@ -15,7 +15,6 @@ function App() {
       <div className = 'container'>
         <Alert userState={locationState} userFIP={locationFIP} />
       </div>
-      
       <div className="container">
         <Map />
         <Legend className="left-side" />
