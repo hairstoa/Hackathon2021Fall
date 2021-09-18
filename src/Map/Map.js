@@ -26,7 +26,7 @@ function Map() {
     // render the map
     map.current = new mapboxgl.Map({
       container: mapContainer.current,
-      style: "mapbox://styles/mapbox/dark-v10",
+      style: "mapbox://styles/mapbox/navigation-night-v1",
       center: [lng, lat],
       zoom: zoom,
       maxBounds: bounds,
