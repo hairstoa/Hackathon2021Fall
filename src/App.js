@@ -48,13 +48,22 @@ function App() {
   return (
     <div className="App">
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6c5ec0d3f155cfb1a398d36dda5c2e8f8738e9fb
       <div className = 'container'>
-        <Alert userState={locationState} userFIP={locationFIP} />
+        <Alert userState={location.state_code} userFIP={location.fips} />
       </div>
+<<<<<<< HEAD
 =======
       {/* <Alert userState={locationState} userFIP={locationFIP} /> */}
       <Alert userState={location.state_code} userFIP={location.fips} />
 >>>>>>> origin/main
+=======
+
+      {/* <Alert userState={locationState} userFIP={locationFIP} /> */}
+>>>>>>> 6c5ec0d3f155cfb1a398d36dda5c2e8f8738e9fb
       <div className="container">
         <Map />
         {/* <Map updateLocation = { updateLocationHandler} setLocation = {setLocationCoordsHandler} /> */}
