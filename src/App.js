@@ -5,8 +5,10 @@ import Legend from "./Legend/Legend";
 import Feed from "./Feed/Feed";
 
 function App() {
-  const locationFIP = "41035";
-  const locationState = "OR";
+  // const locationFIP = "41035";
+  // const locationState = "OR";
+  const locationFIP = "42003";
+  const locationState = "PA";
   let d = 1;
   return (
     <div className="App">

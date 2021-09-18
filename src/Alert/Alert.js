@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import "./Alert.css";
 
 function Alert(props) {
@@ -21,8 +21,10 @@ function Alert(props) {
         })
         setAlertStatus(filteredContent);
     }
-    
-    alertHandler(props.userState, props.userFIP);
+    useEffect(() => {
+        alertHandler(props.userState, props.userFIP);
+    }, [props.userState, props.userFIP]);
+
 
 
     let alertContent =  ( alertStatus.length && alertStatus.length > 0)? alertStatus : <p> There are no current weather alerts for your region. </p>;
