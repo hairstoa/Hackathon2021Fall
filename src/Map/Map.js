@@ -4,7 +4,7 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import "./Map.css";
 
 mapboxgl.accessToken =
-  "pk.eyJ1IjoiamFpbWVqdXN0byIsImEiOiJja3RubHdxa2IwNDBkMm9vMzBqMmsxZzV1In0.GrfCgBDgjmUf1ouM7xBOSQ";
+  "pk.eyJ1IjoiYW5kcmV3dm8iLCJhIjoiY2t0b3I0cnEyMGZjcDJvcTU4Y3psYjlqdyJ9.pb11GshhAMZWwzwEs1jZJw";
 
 function Map() {
   const mapContainer = useRef(null);
@@ -23,14 +23,32 @@ function Map() {
       [-65.0877, 73.1958], // Northeast coords
     ];
 
-    // render the map
+    // render the map with these cameraOptions
     map.current = new mapboxgl.Map({
       container: mapContainer.current,
-      style: "mapbox://styles/mapbox/navigation-night-v1",
+      style: "mapbox://styles/andrewvo/cktq0kjxb25ii17qdk0uu9zhl",
       center: [lng, lat],
       zoom: zoom,
-      maxBounds: bounds,
+      maxBounds: bounds, 
     });
+
+    //map.current.addSource('county-layer', {
+    //  type: 'geojson',
+    //  data: '../data/CountyLayer.geojson'
+    //});
+//
+    //map.addLayer({
+    //  id: 'counties',
+    //  // References the GeoJSON source defined above
+    //  // and does not require a `source-layer`
+    //  source: 'county-layer',
+    //  type: 'vector',
+    //  layout: {
+    //  // Set the label content to the
+    //  // feature's `name` property
+    //    'text-field': ['get', 'name']
+    //}});
+
   });
 
   useEffect(() => {
