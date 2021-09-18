@@ -3,24 +3,30 @@ import "./Alert.css";
 
 function Alert(props) {
 
-    const [alertStatus, setAlertStatus] = useState("Test");
+    const [alertStatus, setAlertStatus] = useState("");
 
     async function alertHandler(userState, userFIP) {
-        let uri = "https://api.weather.gov/alerts/active?area=" + userState;
-        const response = await fetch(uri);
-        const weatherData = await response.json();
-        // Filter the results for warnings with matching FIPS to the users location
-        // console.log(weatherData.features);
-        const filteredContent = weatherData.features
-        .filter(alert => {
-            const formatFIP = "0" + userFIP;
-            return alert.properties.geocode.SAME && alert.properties.geocode.SAME.includes(formatFIP);
-        })
-        .map(element => {
-            return  <div>{element.properties.description}</div>;
-        })
-        setAlertStatus(filteredContent);
+        if (userState !== null & userFIP !== null){
+            let uri = "https://api.weather.gov/alerts/active?area=" + userState;
+            const response = await fetch(uri);
+            const weatherData = await response.json();
+            // Filter the results for warnings with matching FIPS to the users location
+            // console.log(weatherData.features);
+            const filteredContent = weatherData.features
+            .filter(alert => {
+                const formatFIP = "0" + userFIP;
+                return alert.properties.geocode.SAME && alert.properties.geocode.SAME.includes(formatFIP);
+            })
+            .map(element => {
+                return  <div>{element.properties.description}</div>;
+            })
+            setAlertStatus(filteredContent);
+        }
+        else {
+            setAlertStatus("");
+        }
     }
+    
     useEffect(() => {
         alertHandler(props.userState, props.userFIP);
     }, [props.userState, props.userFIP]);
