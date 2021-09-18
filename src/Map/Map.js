@@ -26,7 +26,7 @@ function Map() {
     // render the map with these cameraOptions
     map.current = new mapboxgl.Map({
       container: mapContainer.current,
-      style: "mapbox://styles/andrewvo/cktq0kjxb25ii17qdk0uu9zhl",
+      style: "mapbox://styles/andrewvo/cktq1bdtq0nm517layvk2ksy0",
       center: [lng, lat],
       zoom: zoom,
       maxBounds: bounds, 
