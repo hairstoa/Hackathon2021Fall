@@ -27,11 +27,11 @@ function Alert(props) {
 
 
 
-    let alertContent =  ( alertStatus.length && alertStatus.length > 0)? alertStatus : <p> There are no current weather alerts for your region. </p>;
+    let alertContent =  ( alertStatus.length && alertStatus.length > 0)? alertStatus : <p className = 'text'> There are no current weather alerts for your region. </p>;
    
     return(
         <div className="alert-box">
-            { alertContent }
+            {alertContent }
         </div>
     )
 }

@@ -1,4 +1,5 @@
 import React from "react";
+import './Legend.css';
 
 function Legend() {
   return (
@@ -16,11 +17,11 @@ function Legend() {
             <td className="table-data">D0</td>
             <td className="table-data">Abnormally Dry</td>
             <td className="table-data">
-              <p>
+              <p className = 'text'>
                 short-term dryness slowing planting, growth of crops or
                 pastures{" "}
               </p>
-              <p>some lingering water deficits</p>
+              <p className = 'text'>some lingering water deficits</p>
             </td>
           </tr>
 

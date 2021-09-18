@@ -12,7 +12,10 @@ function App() {
   let d = 1;
   return (
     <div className="App">
-      <Alert userState={locationState} userFIP={locationFIP} />
+      <div className = 'container'>
+        <Alert userState={locationState} userFIP={locationFIP} />
+      </div>
+      
       <div className="container">
         <Map />
         <Legend className="left-side" />
