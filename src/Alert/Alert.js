@@ -16,26 +16,19 @@ function Alert(props) {
             const formatFIP = "0" + userFIP;
             return alert.properties.geocode.SAME && alert.properties.geocode.SAME.includes(formatFIP);
         })
-        console.log(filteredContent);
-        setAlertStatus(weatherData.title);
+        .map(element => {
+            return  <div>{element.properties.description}</div>;
+        })
+        setAlertStatus(filteredContent);
     }
     
     alertHandler(props.userState, props.userFIP);
 
-    const filteredContent = alertStatus;
 
-    // For each of the FIPS in the alert, check if the userFIP is listed
-    // const matchFIPS = (alertLocations, userFIP) => { 
-    //     // Add a zero to the front of the userFIP because for some reason that is how it is formatted 
-    //     // in the JSON returned from weather API
-    //     const formatFIP = "0" + userFIP;
-    //     return alertLocations.geocode.SAME && alertLocations.geocode.SAME.includes(formatFIP);
-    // }
-    let alertContent =  (filteredContent.length > 0)? filteredContent : <p> There are no current weather alerts for your region. </p>;
+    let alertContent =  ( alertStatus.length && alertStatus.length > 0)? alertStatus : <p> There are no current weather alerts for your region. </p>;
    
     return(
         <div className="alert-box">
-            {/* <div onLoad={ () => { alertHandler(props.userState, props.userFIP) } }> { alertStatus }</div> */}
             { alertContent }
         </div>
     )
