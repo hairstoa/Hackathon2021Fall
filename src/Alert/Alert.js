@@ -18,6 +18,7 @@ function Alert(props) {
                 return alert.properties.geocode.SAME && alert.properties.geocode.SAME.includes(formatFIP);
             })
             .map(element => {
+                
                 return  <div>{element.properties.description}</div>;
             })
             setAlertStatus(filteredContent);
