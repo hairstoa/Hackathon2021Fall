@@ -47,12 +47,8 @@ function App() {
   let d = 1;
   return (
     <div className="App">
-
-      <div className = 'container'>
-        <Alert userState={location.state_code} userFIP={location.fips} />
-      </div>
-
       {/* <Alert userState={locationState} userFIP={locationFIP} /> */}
+      <Alert userState={location.state_code} userFIP={location.fips} />
       <div className="container">
         <Map />
         {/* <Map updateLocation = { updateLocationHandler} setLocation = {setLocationCoordsHandler} /> */}
