@@ -4,10 +4,19 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import "./Map.css";
 import countylines from "../data/CountyLayer.json";
 import statelines from "../data/StatesLayer.json";
-import FIPS from "../data/FIPS.js";
+import FIPSdata from "../data/FIPS.js";
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoiYW5kcmV3dm8iLCJhIjoiY2t0b3I0cnEyMGZjcDJvcTU4Y3psYjlqdyJ9.pb11GshhAMZWwzwEs1jZJw";
+
+
+// color suggestions for drought categories
+const D0_COLOR = "#FF0";
+const D1_COLOR = "#FCD37F";
+const D2_COLOR = "#FFAA00";
+const D3_COLOR = "#E60000";
+const D4_COLOR = "#730000";
+
 
 function Map() {
   const mapContainer = useRef(null);
@@ -16,6 +25,7 @@ function Map() {
   const [lat, setLat] = useState(38.6427);
   const [zoom, setZoom] = useState(4);
   const zoomThreshold = 6;
+  let clickedCountyId = null;
 
   useEffect(() => {
     // map already displayed
@@ -98,13 +108,25 @@ function Map() {
 
       // add layer showing county polygons
       map.current.addLayer({
-          "id": "county-layer",
+          "id": "county-borders",
+          "type": "line",
+          "source": "counties",
+          "minzoom": zoomThreshold,
+          "paint": {
+              "line-color": "red",
+              "line-width": 2
+          }
+      });
+
+      // add layer to fill county according to drought severity
+      map.current.addLayer({
+          "id": "county-fills",
           "type": "fill",
           "source": "counties",
           "minzoom": zoomThreshold,
           "paint": {
-              "fill-color": "rgba(240, 52, 52, 0.1)",
-              "fill-outline-color": "rgba(240, 52, 52, 0.4)",
+            "fill-color": "red",
+            "fill-opacity": 0.1
           }
       });
 
@@ -121,20 +143,38 @@ function Map() {
       });
 
       // display county name and state on click
-      map.current.on("click", "county-layer", (e) => {
+      map.current.on("click", "county-fills", (e) => {
+        const countyName = e.features[0].properties.name;
+        const stateName = e.features[0].properties.state;
+        const fipsObj = FIPSdata.fips;
+        let countyFIPS;
+
+        // retrieve FIPS for county
+        for (let i = 0; i < fipsObj.length; i++) {
+          if (fipsObj[i].County === countyName && fipsObj[i].State === stateName) {
+            countyFIPS = fipsObj[i].Code;
+            console.log(countyFIPS);
+            break;
+          }
+        }
+
+        // TODO: retrieve drought data from api
+
+
+        // county and state popup
         new mapboxgl.Popup()
             .setLngLat(e.lngLat)
-            .setHTML(`${e.features[0].properties.name}, ${e.features[0].properties.state}`)
+            .setHTML(`${countyName}, ${stateName}`)
             .addTo(map.current);
       });
 
       // change cursor to pointer when mouse over county-layer
-      map.current.on("mouseenter", "county-layer", () => {
+      map.current.on("mouseenter", "county-fills", () => {
         map.current.getCanvas().style.cursor = "pointer";
       });
 
       // change cursor back to grab
-      map.current.on("mouseleave", "county-layer", () => {
+      map.current.on("mouseleave", "county-fills", () => {
         map.current.getCanvas().style.cursor = "";
       });
     });
