@@ -14,7 +14,7 @@ export const getDroughtStats = (FIPS) => {
                     categories.push(`${key}: ${value}`);
                 }
             }
-            console.log(categories);
+            //console.log(categories);
             return categories;
         });
 };
