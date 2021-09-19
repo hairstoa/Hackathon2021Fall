@@ -194,7 +194,7 @@ function Map(props) {
             .setHTML(`<h2 id="popup_location">${countyName}, ${stateName}</h2> <br>
             <table>
               <thead>
-                <th id="category_title">Drought Categories</th>
+                <th colspan=2 id="category_title">Drought Categories</th>
               </thead>
               <tbody>
                 <tr>
