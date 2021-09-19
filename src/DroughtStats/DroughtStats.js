@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import Axios from "axios";
 
-const getDroughtStats = (FIPS) => {
+const getDroughtStats = async (FIPS) => {
     // get today's date
     const timeElapsed = Data.now();
     const today = new Date(timeElapsed);
