@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from "react";
+import { Accordion, Col, Container, Row } from "react-bootstrap";
 import "./Alert.css";
 
 function Alert(props) {
@@ -17,9 +18,16 @@ function Alert(props) {
                 const formatFIP = "0" + userFIP;
                 return alert.properties.geocode.SAME && alert.properties.geocode.SAME.includes(formatFIP);
             })
-            .map(element => {
-                
-                return  <div>{element.properties.description}</div>;
+            .map((element, index) => {
+                return  (
+                    <Accordion.Item eventKey={index} >
+                        <Accordion.Header>Alert: {element.properties.areaDesc}</Accordion.Header>
+                        <Accordion.Body className="alert-box">
+                            {element.properties.description}
+                        </Accordion.Body>
+                    </Accordion.Item>
+                )
+                // <div>{element.properties.description}</div>;
             })
             setAlertStatus(filteredContent);
         }
@@ -36,9 +44,17 @@ function Alert(props) {
     let alertContent =  ( alertStatus.length && alertStatus.length > 0)? alertStatus : <p className = 'text'> There are no current weather alerts for your region. </p>;
    
     return(
-        <div className="alert-box">
-            { alertContent }
-        </div>
+    <div className="alert-box">
+        <Container fluid style={{width: "70%"}}>
+            <Row>
+                <Col>
+                    <Accordion >
+                        { alertContent }
+                    </Accordion>
+                </Col>
+            </Row>
+        </Container>    
+    </div>
     )
 }
 
