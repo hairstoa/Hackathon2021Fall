@@ -19,7 +19,7 @@ const D3_COLOR = "#E60000";
 const D4_COLOR = "#730000";
 
 
-function Map() {
+function Map(props) {
   const mapContainer = useRef(null);
   const map = useRef(null);
   const [lng, setLng] = useState(-97.6064);
@@ -156,12 +156,21 @@ function Map() {
           if (fipsObj[i].County === countyName && fipsObj[i].State === stateName) {
             countyFIPS = fipsObj[i].Code;
             console.log(countyFIPS);
+            console.log(stateName);
+           
             break;
           }
         }
 
         // TODO: retrieve drought data from api
         getDroughtStats(countyFIPS);
+
+        props.updateLocation({
+          fips: countyFIPS,
+          state_code: stateName
+        });
+        
+
 
         // county and state popup
         new mapboxgl.Popup()

@@ -12,7 +12,6 @@ function Alert(props) {
             const response = await fetch(uri);
             const weatherData = await response.json();
             // Filter the results for warnings with matching FIPS to the users location
-            // console.log(weatherData.features);
             const filteredContent = weatherData.features
             .filter(alert => {
                 const formatFIP = "0" + userFIP;
@@ -20,14 +19,13 @@ function Alert(props) {
             })
             .map((element, index) => {
                 return  (
-                    <Accordion.Item eventKey={index} >
+                    <Accordion.Item key ={index} eventKey={index} >
                         <Accordion.Header>Alert: {element.properties.areaDesc}</Accordion.Header>
                         <Accordion.Body className="alert-box">
                             {element.properties.description}
                         </Accordion.Body>
                     </Accordion.Item>
                 )
-                // <div>{element.properties.description}</div>;
             })
             setAlertStatus(filteredContent);
         }
