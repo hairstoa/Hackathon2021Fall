@@ -12,7 +12,7 @@ function Feed(props) {
             <h3> Drought Tips </h3>
             <p> From the American Red Cross</p>
             <Carousel>
-            {tips.tips.filter(element => element.Dx === props.dn)
+            {tips.tips
                 .map( e => {
                     return (
                         <Carousel.Item key={e.id}>
