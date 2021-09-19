@@ -5,6 +5,7 @@ import "./Map.css";
 import countylines from "../data/CountyLayer.json";
 import statelines from "../data/StatesLayer.json";
 import FIPSdata from "../data/FIPS.js";
+import {getDroughtStats} from "../DroughtStats/api.droughtStats.js";
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoiYW5kcmV3dm8iLCJhIjoiY2t0b3I0cnEyMGZjcDJvcTU4Y3psYjlqdyJ9.pb11GshhAMZWwzwEs1jZJw";
@@ -25,6 +26,7 @@ function Map() {
   const [lat, setLat] = useState(38.6427);
   const [zoom, setZoom] = useState(4);
   const zoomThreshold = 6;
+  const [countyCategory, setCategory] = useState("");
   let clickedCountyId = null;
 
   useEffect(() => {
@@ -159,12 +161,13 @@ function Map() {
         }
 
         // TODO: retrieve drought data from api
-
+        getDroughtStats(countyFIPS);
 
         // county and state popup
         new mapboxgl.Popup()
             .setLngLat(e.lngLat)
-            .setHTML(`${countyName}, ${stateName}`)
+            .setHTML(`${countyName}, ${stateName} <br>`
+            )
             .addTo(map.current);
       });
 
