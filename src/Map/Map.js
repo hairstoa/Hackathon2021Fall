@@ -3,12 +3,13 @@ import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import "./Map.css";
 import countylines from "../data/CountyLayer.geojson";
+import { coord_to_region } from "../util/conversion";
 
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoiYW5kcmV3dm8iLCJhIjoiY2t0b3I0cnEyMGZjcDJvcTU4Y3psYjlqdyJ9.pb11GshhAMZWwzwEs1jZJw";
 
-function Map() {
+function Map(props) {
   const mapContainer = useRef(null);
   const map = useRef(null);
   const [lng, setLng] = useState(-97.6064);
@@ -73,6 +74,7 @@ function Map() {
       setLng(map.current.getCenter().lng.toFixed(4));
       setLat(map.current.getCenter().lat.toFixed(4));
       setZoom(map.current.getZoom().toFixed(2));
+      props.setCoords(lat,lng, props.updateLocation, coord_to_region)
     });
   });
 

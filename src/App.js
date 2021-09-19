@@ -18,7 +18,7 @@ const INIT_LOCATION = {
 
 function App() {
   const [location, setLocation] = useState(INIT_LOCATION);
-  // eslint-disable-next-line
+
   const updateLocationHandler = (loc) => {
     setLocation(prevLocation => {
       return {
@@ -30,14 +30,16 @@ function App() {
       state_code: loc.state_code};
     });
   }
-  // eslint-disable-next-line
-  const setLocationCoordsHandler = (loc) => {
+
+  const setLocationCoordsHandler = (latitude, longitude, updateLocFunction, callback) => {
     setLocation(prevLocation => {
       return {
       ...prevLocation, 
-      lat: loc.fips,
-      lon: loc.county_name};
+      lat: latitude,
+      lon: longitude};
     });
+    if (typeof callback == "function")
+      callback(latitude, longitude, updateLocFunction);
   }
   
   // const locationFIP = "41035";
@@ -48,10 +50,10 @@ function App() {
   return (
     <div className="App">
       {/* <Alert userState={locationState} userFIP={locationFIP} /> */}
-      <Alert userState={location.state_code} userFIP={location.fips} />
+      <Alert userState={ location.state_code } userFIP={ location.fips } />
       <div className="container">
-        <Map />
-        {/* <Map updateLocation = { updateLocationHandler} setLocation = {setLocationCoordsHandler} /> */}
+        {/* <Map /> */}
+        <Map updateLocation = { updateLocationHandler } setCoords = { setLocationCoordsHandler } />
         <Legend className="left-side" />
         <Feed dn={d} className="right-side" />
       </div>

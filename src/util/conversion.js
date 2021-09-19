@@ -1,6 +1,6 @@
 
 // Convert latitude and longitude coordinates to object
-exports.coord_to_region =  async function(latitude, longitude, location, locationHandler) {
+exports.coord_to_region =  async function(latitude, longitude, callback) {
     try {
         let uri = `https://geo.fcc.gov/api/census/area?lat=${latitude}&lon=${longitude}`;
         const response = await fetch(uri);
@@ -15,10 +15,11 @@ exports.coord_to_region =  async function(latitude, longitude, location, locatio
                 state_name: res.results[0].state_name,
                 state_code: res.results[0].state_code,
             }
- 
-            locationHandler(regionObject);
+            if (typeof callback == "function")
+            callback(regionObject);
          }    
     } catch (error) {
         console.log(error);
     }
+
 }
