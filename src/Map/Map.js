@@ -5,6 +5,7 @@ import "./Map.css";
 import countylines from "../data/CountyLayer.json";
 import statelines from "../data/StatesLayer.json";
 import FIPSdata from "../data/FIPS.js";
+import {getDroughtStats} from "../DroughtStats/api.droughtStats.js";
 import axios from "axios";
 
 mapboxgl.accessToken =
@@ -197,9 +198,8 @@ function Map(props) {
           if (fipsObj[i].County === countyName && fipsObj[i].State === stateName) {
             countyFIPS = fipsObj[i].Code;
             console.log(countyFIPS);
-<<<<<<< Updated upstream
             console.log(stateName);
-           
+            setClickedCounty(countyFIPS);
             break;
           }
         }
@@ -211,15 +211,7 @@ function Map(props) {
           fips: countyFIPS,
           state_code: stateName
         });
-        
 
-
-=======
-            setClickedCounty(countyFIPS);
-            break;
-          }
-        }
->>>>>>> Stashed changes
         // county and state popup
         new mapboxgl.Popup()
             .setLngLat(e.lngLat)
