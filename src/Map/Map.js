@@ -3,6 +3,7 @@ import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import "./Map.css";
 import countylines from "../data/CountyLayer.json";
+import statelines from "../data/StatesLayer.json";
 import FIPS from "../data/FIPS.js";
 
 mapboxgl.accessToken =
@@ -14,6 +15,7 @@ function Map() {
   const [lng, setLng] = useState(-97.6064);
   const [lat, setLat] = useState(38.6427);
   const [zoom, setZoom] = useState(4);
+  const zoomThreshold = 6;
 
   useEffect(() => {
     // map already displayed
@@ -79,7 +81,7 @@ function Map() {
   useEffect(() => {
     if (!map.current) return;
 
-    // add county polygons
+    // add state and county polygons
     map.current.on("load", () => {
         
       // add source for county polygons
@@ -88,22 +90,41 @@ function Map() {
             "data": countylines
       });
 
+      // add source for state polygons
+      map.current.addSource("states", {
+            "type": "geojson",
+            "data": statelines
+      });
+
       // add layer showing county polygons
       map.current.addLayer({
           "id": "county-layer",
           "type": "fill",
           "source": "counties",
+          "minzoom": zoomThreshold,
           "paint": {
               "fill-color": "rgba(240, 52, 52, 0.1)",
-              "fill-outline-color": "rgba(240, 52, 52, 1)"
+              "fill-outline-color": "rgba(240, 52, 52, 0.4)",
           }
       });
 
-      // display county name on click
+      // add layer showing state polygons
+      map.current.addLayer({
+          "id": "state-layer",
+          "type": "fill",
+          "source": "states",
+          "maxzoom": zoomThreshold,
+          "paint": {
+              "fill-color": "rgba(240, 52, 52, 0.5)",
+              "fill-outline-color": "rgba(240, 52, 52, 1)",
+          }
+      });
+
+      // display county name and state on click
       map.current.on("click", "county-layer", (e) => {
         new mapboxgl.Popup()
             .setLngLat(e.lngLat)
-            .setHTML(e.features[0].properties.name)
+            .setHTML(`${e.features[0].properties.name}, ${e.features[0].properties.state}`)
             .addTo(map.current);
       });
 
