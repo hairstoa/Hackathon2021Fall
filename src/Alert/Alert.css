@@ -3,5 +3,7 @@
 }
 
 .alert-box{
-    color: whitesmoke
+    color: whitesmoke;
+    justify-content: center; 
+    background-color: #1d1d1d;
 }
