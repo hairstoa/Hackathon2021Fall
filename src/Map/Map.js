@@ -166,7 +166,44 @@ function Map() {
         // county and state popup
         new mapboxgl.Popup()
             .setLngLat(e.lngLat)
-            .setHTML(`${countyName}, ${stateName} <br>`
+            .setHTML(`${countyName}, ${stateName} <br>
+              <table>
+                <tr>
+                  <td></td>
+                  <td>:</td>
+                  <td></td>
+                </tr>
+
+                <tr>
+                  <td></td>
+                  <td>:</td>
+                  <td></td>
+                </tr>
+
+                <tr>
+                  <td></td>
+                  <td>:</td>
+                  <td></td>
+                </tr>
+
+                <tr>
+                  <td></td>
+                  <td>:</td>
+                  <td></td>
+                </tr>
+
+                <tr>
+                  <td></td>
+                  <td>:</td>
+                  <td></td>
+                </tr>
+
+                <tr>
+                  <td></td>
+                  <td>:</td>
+                  <td></td>
+                </tr>
+              </table>`
             )
             .addTo(map.current);
       });
