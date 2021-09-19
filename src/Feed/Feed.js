@@ -1,6 +1,7 @@
 import React from "react";
 import tips from "./DroughtTips";
 
+
 import "./Feed.css";
 
 function Feed(props) {

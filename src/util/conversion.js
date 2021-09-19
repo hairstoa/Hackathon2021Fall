@@ -1,4 +1,3 @@
-
 // Convert latitude and longitude coordinates to object
 exports.coord_to_region =  async function(latitude, longitude, callback) {
     try {

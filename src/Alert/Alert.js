@@ -3,7 +3,7 @@ import "./Alert.css";
 
 function Alert(props) {
 
-    const [alertStatus, setAlertStatus] = useState("");
+    const [alertStatus, setAlertStatus] = useState("Test");
 
     async function alertHandler(userState, userFIP) {
         if (userState !== null & userFIP !== null){
@@ -26,14 +26,13 @@ function Alert(props) {
             setAlertStatus("");
         }
     }
-    
     useEffect(() => {
         alertHandler(props.userState, props.userFIP);
     }, [props.userState, props.userFIP]);
 
 
 
-    let alertContent =  ( alertStatus.length && alertStatus.length > 0)? alertStatus : <p> There are no current weather alerts for your region. </p>;
+    let alertContent =  ( alertStatus.length && alertStatus.length > 0)? alertStatus : <p className = 'text'> There are no current weather alerts for your region. </p>;
    
     return(
         <div className="alert-box">
