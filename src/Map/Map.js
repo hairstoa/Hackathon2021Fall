@@ -13,11 +13,7 @@ mapboxgl.accessToken =
 
 
 // color suggestions for drought categories
-const D0_COLOR = "#FF0";
-const D1_COLOR = "#FCD37F";
-const D2_COLOR = "#FFAA00";
-const D3_COLOR = "#E60000";
-const D4_COLOR = "#730000";
+
 
 // get today's date
 const timeElapsed = Date.now();
@@ -30,12 +26,9 @@ function Map(props) {
   const [lat, setLat] = useState(38.6427);
   const [zoom, setZoom] = useState(4);
   const zoomThreshold = 6;
-  const [countyCategory, setCategory] = useState("");
   const [clickedCounty, setClickedCounty] = useState("");
   const [droughtData, setDroughtData] = useState([]);
   const droughtDataRef = useRef(droughtData);
-
-  let clickedCountyId = null;
 
   useEffect(() => {
     droughtDataRef.current = droughtData;
@@ -49,7 +42,7 @@ function Map(props) {
         const data = response.data[0];
         for (const [key, value] of Object.entries(data)) {
             if ( (key == "None") || (key == "D0") || (key == "D1") || (key == "D2") || (key == "D3") || (key == "D4") ) {
-                categories.push(`${key}: ${value}`);
+                categories.push(`${key}: ${value}%`);
             }
         }
         setDroughtData(categories);
@@ -78,24 +71,6 @@ function Map(props) {
       zoom: zoom,
       maxBounds: bounds, 
     });
-
-    //map.current.addSource('county-layer', {
-    //  type: 'geojson',
-    //  data: '../data/CountyLayer.geojson'
-    //});
-//
-    //map.addLayer({
-    //  id: 'counties',
-    //  // References the GeoJSON source defined above
-    //  // and does not require a `source-layer`
-    //  source: 'county-layer',
-    //  type: 'vector',
-    //  layout: {
-    //  // Set the label content to the
-    //  // feature's `name` property
-    //    'text-field': ['get', 'name']
-    //}});
-
   });
 
   useEffect(() => {
@@ -211,12 +186,42 @@ function Map(props) {
           fips: countyFIPS,
           state_code: stateName
         });
-
+        
+        console.log(droughtDataRef.current);
         // county and state popup
         new mapboxgl.Popup()
             .setLngLat(e.lngLat)
-            .setHTML(`${countyName}, ${stateName} <br>
-                    ${droughtDataRef.current}`
+            .setHTML(`<h2 id="popup_location">${countyName}, ${stateName}</h2> <br>
+            <table>
+              <thead>
+                <th id="category_title">Drought Categories</th>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><div class="square" id="cat_none"/></td>
+                  <td>${droughtDataRef.current[0]}</td>
+                </tr>
+                <tr>
+                  <td><div class="square" id="cat_d0"/></td>
+                  <td>${droughtDataRef.current[1]}</td>
+                </tr>
+                <tr>
+                  <td><div class="square" id="cat_d1"/></td>
+                  <td>${droughtDataRef.current[2]}</td>
+                </tr>
+                <tr>
+                  <td><div class="square"  id="cat_d2"></td>
+                  <td>${droughtDataRef.current[3]}</td>
+                </tr>
+                <tr>
+                  <td><div class="square" id="cat_d3"/></td>
+                  <td>${droughtDataRef.current[4]}</td>
+                </tr>
+                <tr>
+                  <td><div class="square" id="cat_d4"/></td>
+                  <td>${droughtDataRef.current[5]}</td>
+                </tr>
+              </tbody>`
             )
             .addTo(map.current);
       });

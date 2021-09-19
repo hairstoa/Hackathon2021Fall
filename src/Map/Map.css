@@ -1,3 +1,10 @@
+:root {
+  --d0_color: #FF0;
+  --d1_color: #FCD37F;
+  --d2_color: #FFAA00;
+  --d3_color: #E60000;
+  --d4_color: #730000;
+}
 .map-container {
   height: 70vh;
   width: 70vw;
@@ -10,4 +17,44 @@
   z-index: 1;
   background: gray;
   margin-left: 25%;
+}
+
+.square {
+  height: 10px;
+  width: 10px;
+}
+
+div#cat_none.square {
+  background-color: white;
+  border: 1px solid black;
+}
+
+div#cat_d0.square {
+  background-color: var(--d0_color);
+}
+
+div#cat_d1.square {
+  background-color: var(--d1_color);
+}
+
+div#cat_d2.square {
+  background-color: var(--d2_color);
+}
+
+div#cat_d3.square {
+  background-color: var(--d3_color);
+}
+
+div#cat_d4.square {
+  background-color: var(--d4_color);
+}
+
+#category_title {
+  font-weight: bolder;
+  border-bottom: 1px solid black;
+}
+
+#popup_location {
+  font-size:15px;
+  font-weight: bolder;
 }
