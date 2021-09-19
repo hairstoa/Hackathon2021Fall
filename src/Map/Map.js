@@ -2,8 +2,8 @@ import React, { useRef, useEffect, useState } from "react";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import "./Map.css";
-import countylines from "../data/CountyLayer.geojson";
-
+import countylines from "../data/CountyLayer.json";
+import FIPS from "../data/FIPS.js";
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoiYW5kcmV3dm8iLCJhIjoiY2t0b3I0cnEyMGZjcDJvcTU4Y3psYjlqdyJ9.pb11GshhAMZWwzwEs1jZJw";
@@ -97,6 +97,24 @@ function Map() {
               "fill-color": "rgba(240, 52, 52, 0.1)",
               "fill-outline-color": "rgba(240, 52, 52, 1)"
           }
+      });
+
+      // display county name on click
+      map.current.on("click", "county-layer", (e) => {
+        new mapboxgl.Popup()
+            .setLngLat(e.lngLat)
+            .setHTML(e.features[0].properties.name)
+            .addTo(map.current);
+      });
+
+      // change cursor to pointer when mouse over county-layer
+      map.current.on("mouseenter", "county-layer", () => {
+        map.current.getCanvas().style.cursor = "pointer";
+      });
+
+      // change cursor back to grab
+      map.current.on("mouseleave", "county-layer", () => {
+        map.current.getCanvas().style.cursor = "";
       });
     });
   });
